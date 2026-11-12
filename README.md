@@ -78,6 +78,8 @@ erDiagram
 ```
 
 ### Banco de Dados - Script de Criação e População
+Localizado no arquivo `schema.sql`
 
 ### Construção da Aplicação (`sistema/`)
 
+Localizada na pasta `sistema/`
