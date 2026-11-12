@@ -16,7 +16,7 @@ final class Usuario {
     }
 
     public static function buscarPorEmail(string $email): ?array {
-        $sql = "SELECT id, nome, email, senha_hash, perfil FROM usuarios WHERE email = :email LIMIT 1";
+        $sql = "SELECT id, nome, email, senha_criptografada, perfil FROM usuarios WHERE email = :email LIMIT 1";
         $stmt = self::pdo()->prepare($sql);
         $stmt->execute([':email' => trim($email)]);
         $res = $stmt->fetch();

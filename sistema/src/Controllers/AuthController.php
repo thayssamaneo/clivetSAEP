@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Controllers;
 
-use App\Controller\Controller;
+use App\Controllers\Controller;
 use App\Models\Usuario;
 
 
@@ -18,6 +18,7 @@ final class AuthController extends Controller {
             'csrfToken' => $this->obterCsrfToken()
         ]);
     }
+
     // Valida o login
     public function login(): void {
         if (!$this->validarCsrfToken($_POST['csrf_token'] ?? null)) {
@@ -28,7 +29,7 @@ final class AuthController extends Controller {
         $senha = (string)($_POST['senha'] ?? '');
         $usuario = Usuario::buscarPorEmail($email);
 
-        if ($usuario && password_verify($senha, $usuario['senha_hash'])) {
+        if ($usuario && password_verify($senha, $usuario['senha_criptografada'])) {
             session_regenerate_id(true);
             $_SESSION['usuario_id']     = (int)$usuario['id'];
             $_SESSION['usuario_nome']   = $usuario['nome'];
@@ -42,6 +43,7 @@ final class AuthController extends Controller {
             'csrfToken' => $this->obterCsrfToken()
         ]);
     }
+
     // Logout
     public function logout(): void {
         if (session_status() === PHP_SESSION_NONE) {
