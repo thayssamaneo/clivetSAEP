@@ -39,7 +39,7 @@ final class AuthController extends Controller {
         }
         $this->renderizar('auth/login', [
             'titulo'    => 'Login',
-            'erro'      => 'Falha na autenticação: E-mail ou senha incorretos.',
+            'erro'      => 'Falha na autenticação. E-mail ou senha incorretos.',
             'csrfToken' => $this->obterCsrfToken()
         ]);
     }
